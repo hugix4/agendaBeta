@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Agenda Interesse s/Framework</title>
+			<meta charset="utf-8">
+  			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link rel="stylesheet" href="cssAgenda.css">			
+		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  	<script type="text/javascript" src="fncAgenda.js"></script>
+	</head>
+	<body style="background-color: #06CE1D;">
+		
+
+
+    <h1>Agenda</h1>
+
+    	<form action="vLogin.phtml" method="post" name = "fAcceso" id="fAcceso" onsubmit="return validaFA()">
+    		<div class="row">
+    			<div class="col-sm-3 col-md-3"></div>
+	    		<div class="col-sm-6 col-md-6" style="background-color: #EB2CA8; display: flex; justify-content: center;">
+					<div id="formularioL" name="validaFA" >
+						<br><br>
+						<label id="tag_usuario">Usuario:</label> <input type="text"  id = 'usuario' name="usuario">
+						<br><br>
+						<label id="tag_clave">Clave:</label> <input type="text" id = 'clave' name="clave">
+						<br><br>
+						<button class="btn" id="btnE">Acceder</button>
+						<br><br>				
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3"></div>
+			</div>
+		</form>
+		<br>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Consultar datos</h3>
+    <p>Datos</p>
+  </div>
+
+		<!--a href="javascript:mostrar();">Mostrar</a>
+		<a href="javascript:cerrar();">Cerrar</a-->
+		
+
+	</body>
+</html>

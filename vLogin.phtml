@@ -1,0 +1,32 @@
+<?php
+	include 'cnx.phtml';
+	$usuario = $_POST['usuario'];
+	$clave = $_POST['clave'];
+	
+	//echo "usuario: $usuario , clave: $clave";
+	$mysqli = new mysqli("$host", "$user", "$pw", "$db");
+
+	if (!($logU = $mysqli->query("CALL usuarios_s('$usuario')"))) {
+    	echo "Falló la llamada: (" . $mysqli->errno . ") " . $mysqli->error;
+	}
+	else{
+		echo "El valor de logU es:";
+		$datos = $logU->fetch_assoc();
+		print_r($datos);
+		echo $datos['id_user'];
+
+		if( $datos['nombre'] == $usuario && $datos['clave'] == $clave ){
+			session_start();
+			$_SESSION['nombre'] = $usuario;
+			$_SESSION['usuario'] = $datos['id_user'];
+			header('Location: index.phtml');
+			//$_SESSION['clave'] = $clave;
+		}
+
+		else{
+			header('Location: login.phtml');
+		}
+		//var_dump($logU->fetch_assoc());
+		//echo "logU 0: ".$datos[0];
+	}
+?>

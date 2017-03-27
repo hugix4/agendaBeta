@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+  			<meta name="viewport" content="width=device-width, initial-scale=1">
+  			<link rel="stylesheet" href="cssAgenda.css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  	<script type="text/javascript" src="fncAgenda.js"></script>
+
+<?php
+include 'cnx.phtml';
+	session_start();
+	$usuario = $_SESSION['usuario'];
+	$usuarioG = $_GET['usuario'];
+
+
+	//echo "usuario: $usuario , nombre: $nombre , telefono: $telefono1, email: $email , direccion: $direccion <br><br>" ;
+	$mysqli = new mysqli("$host", "$user", "$pw", "$db");
+
+	if (!($con_i = $mysqli->query("CALL contactos_s('$usuario')"))) {
+    	echo "Falló la llamada: (" . $mysqli->errno . ") " . $mysqli->error;
+	}
+	else{
+		/*echo "Insercion satisfactoria";
+		echo "El valor de con_i es:";
+			$datos = $con_i->fetch_assoc();
+		print_r($datos);
+		echo $datos['id_user'];*/
+
+		echo "<a href='index.phtml' class='btn' > Regresar</a>";
+
+		echo "<table>";  
+		echo "<tr>";  
+		echo "<th>Nombre</th>";  
+		echo "<th>Telefono</th>";  
+		echo "<th>Direccion</th>";
+		echo "<th>Email</th>";
+		echo "</tr>";  
+		while ($row=mysqli_fetch_row($con_i)){
+		    echo "<tr>";  
+		    echo "<td>$row[3]</td>";  
+		    echo "<td>$row[2]</td>";  
+		    echo "<td>$row[5]</td>";
+		    echo "<td>$row[4]</td>";  
+		    echo "</tr>";  
+		}  
+		echo "</table>";
+		
+
+	}
+
+	?>

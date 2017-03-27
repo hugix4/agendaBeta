@@ -1,0 +1,56 @@
+<?php
+	include 'cnx.phtml';
+	session_start();
+	$usuario = $_SESSION['usuario'];
+	$nombre = $_POST['nombre'];	
+	$telefono1 = $_POST['telefono1'];
+	$email = $_POST['email'];
+	$direccion = $_POST['direccion'];
+
+
+	echo "usuario: $usuario , nombre: $nombre , telefono: $telefono1, email: $email , direccion: $direccion <br><br>" ;
+	$mysqli = new mysqli("$host", "$user", "$pw", "$db");
+
+	if (!($con_i = $mysqli->query("CALL contactos_i(  '$nombre', '$email','$direccion', '$usuario', '$telefono1' )"))) {
+    	echo "Falló la llamada: (" . $mysqli->errno . ") " . $mysqli->error;
+	}
+	else{
+		echo "Insercion satisfactoria";
+	}
+
+	for($i = 2; $i<=3; $i++){
+		if(isset($_POST['telefono'.$i])){
+			//$telefono_n = '$telefono'.$i;
+			$telefono_n = $_POST['telefono'.$i];
+			//$tel_tot = $telefono_n." = 	".$telefono_v.";";
+			//echo $tel_tot;
+
+			if (!($con_i = $mysqli->query("CALL contactos_i(  '$nombre', '$email','$direccion', '$usuario', '$telefono_n' )"))) {
+		    	echo "Falló la llamada: (" . $mysqli->errno . ") " . $mysqli->error;
+			}
+			else{
+				echo "Insercion satisfactoria";
+			}
+
+		}else{ echo "No existe ese telefono";
+			
+
+		}
+	}
+
+
+	
+
+
+
+	for($i = 2; $i<=3; $i++){
+		if(isset($_POST['telefono'.$i])){
+			$telefono_n = '$telefono'.$i;
+			$telefono_v = $_POST['telefono'.$i];
+			$tel_tot = $telefono_n." = 	".$telefono_v.";";
+			echo $tel_tot;
+		}
+	}
+
+	
+?>

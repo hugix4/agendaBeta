@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<?
+	php session_start();
+	$usuario = $_SESSION['usuario'];
+ ?>
+<html>
+	<head>
+		<title>Agenda Interesse s/Framework</title>
+			<meta charset="utf-8">
+  			<meta name="viewport" content="width=device-width, initial-scale=1">
+  			<link rel="stylesheet" href="cssAgenda.css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  	<script type="text/javascript" src="fncAgenda.js"></script>
+
+
+	</head>
+	<body>
+	<?php //var_dump($_SESSION); ?>
+		<div class="col-sm-3 col-md-3"></div>
+<h1>Agenda</h1>
+
+	<br><br>
+				
+				<a href="tabla.phtml" class="btn" onclick="verResultados(<?php $usuario?>)">Consulta contactos</a>
+
+				<br><br>
+
+	<!--ul class="nav nav-pills">
+  <li class="active"><a data-toggle="pill" href="#home">Inicio</a></li>
+  <li><a data-toggle="pill" href="#menu1">Consultar</a></li>
+</ul-->
+  <div id="home" class="tab-pane fade in active">
+    	<form action="inserta.phtml" method="post" name = "fAgenda" id="fAgenda" onsubmit="return validaF()">
+    		<div class="row">
+    			
+	    		<div class="col-sm-6 col-md-6" style="background-color: #EB2CA8; display: flex; justify-content: center;">
+	    		
+					<div id="formulario" name="validaF" style="display:none;">
+						<br><br>
+				<label id="tag_nombre">Nombre:</label>
+				<br>
+				<input type="text"  id = 'nombre' name="nombre">
+				<br><br>
+				
+				<div id="dynamicInput">
+			          <label>Telefono 1:</label><br><input type="text" id="telefono1" name="telefono1">
+			          &nbsp;<input type="button" class="pbtn" value="+" onClick="addInput('dynamicInput');">
+			     </div>
+
+				<br><br>
+				<label id="tag_email">Email:</label>
+				<br>
+				<input type="text" id = 'email' name="email">
+				<br><br>
+
+				<label id="tag_direccion">Direccion:</label>
+				<br>
+				<input type="text" id = 'direccion' name="direccion">
+				<br><br>
+				<button class="btn" id="btnG">Guardar</button>
+				<br><br>						
+					</div>
+				</div>
+
+
+				<div class="col-sm-3 col-md-3"></div>
+			</div>
+		</form>
+		<br>
+		<a class="btn" id="linkM" href="javascript:ocultaFormulario();">Anadir</a>
+  </div>
+  <div id='resultado' style="text-align: center;">Aquí aparecerán los resultados</div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Consultar datos</h3>
+    <p>Datos</p>
+  </div>
+
+
+	</body>
+</html>
